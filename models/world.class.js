@@ -10,14 +10,35 @@ class World {
         new Cloud()
     ];
     backgroundObjects = [
+        new BackgroundObject('img/5.Fondo/Capas/5.cielo_1920-1080px.png', -719),
+        new BackgroundObject('img/5.Fondo/Capas/3.Fondo3/2.png', -719),
+        new BackgroundObject('img/5.Fondo/Capas/2.Fondo2/2.png', -719),
+        new BackgroundObject('img/5.Fondo/Capas/1.suelo-fondo1/2.png', -719),
+
         new BackgroundObject('img/5.Fondo/Capas/5.cielo_1920-1080px.png', 0),
         new BackgroundObject('img/5.Fondo/Capas/3.Fondo3/1.png', 0),
         new BackgroundObject('img/5.Fondo/Capas/2.Fondo2/1.png', 0),
-        new BackgroundObject('img/5.Fondo/Capas/1.suelo-fondo1/1.png', 0)
+        new BackgroundObject('img/5.Fondo/Capas/1.suelo-fondo1/1.png', 0),
+
+        new BackgroundObject('img/5.Fondo/Capas/5.cielo_1920-1080px.png', 719),
+        new BackgroundObject('img/5.Fondo/Capas/3.Fondo3/2.png', 719),
+        new BackgroundObject('img/5.Fondo/Capas/2.Fondo2/2.png', 719),
+        new BackgroundObject('img/5.Fondo/Capas/1.suelo-fondo1/2.png', 719),
+
+        new BackgroundObject('img/5.Fondo/Capas/5.cielo_1920-1080px.png', (719)*2),
+        new BackgroundObject('img/5.Fondo/Capas/3.Fondo3/1.png', (719)*2),
+        new BackgroundObject('img/5.Fondo/Capas/2.Fondo2/1.png', (719)*2),
+        new BackgroundObject('img/5.Fondo/Capas/1.suelo-fondo1/1.png', (719)*2),
+
+        new BackgroundObject('img/5.Fondo/Capas/5.cielo_1920-1080px.png', (719)*3),
+        new BackgroundObject('img/5.Fondo/Capas/3.Fondo3/2.png', (719)*3),
+        new BackgroundObject('img/5.Fondo/Capas/2.Fondo2/2.png', (719)*3),
+        new BackgroundObject('img/5.Fondo/Capas/1.suelo-fondo1/2.png', (719)*3)
     ];
     canvas;
     ctx;
     keyboard;
+    camera_x = 0;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -36,10 +57,14 @@ class World {
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
+        this.ctx.translate(this.camera_x,0);
+
         this.addObjectsToMap(this.backgroundObjects);
         this.addToMap(this.character);
         this.addObjectsToMap(this.enemies);
         this.addObjectsToMap(this.clouds);
+
+        this.ctx.translate(-this.camera_x,0);
 
 
         // Draw() wird immer wieder aufgerufen
@@ -64,10 +89,12 @@ class World {
 
         }
         this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
+
         if (mo.otherDirection) {
             this.flipImageBack(mo);
         }
     }
+
 
     flipImage(mo) {
         this.ctx.save();
