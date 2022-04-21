@@ -36,6 +36,19 @@ class MovableObject {
     }
 
 
+    hit() {
+        this.energy -= 5;
+        if(this.energy < 0) {
+            this.energy = 0;
+        }
+    }
+
+
+    isDead() {
+        return this.energy == 0;
+    }
+
+
     applyGravity() {
         setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
