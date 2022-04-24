@@ -1,6 +1,6 @@
 class Cloud extends MovableObject {
-    y = 10;
-    height= 250;
+    y = 40;
+    height = 250;
     width = 500;
 
     constructor() {
@@ -8,11 +8,13 @@ class Cloud extends MovableObject {
 
         this.x = Math.random() * 500; // Zahl zwischen 200 und 700
         this.animate();
-        
+
     }
 
     animate() {
-        this.moveLeft();
+        setInterval(() => {
+            this.moveLeft();
+        }, 1000 / 20);
     }
 }
 
