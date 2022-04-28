@@ -2,13 +2,30 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 
+function init(){
+    console.info('Startscreen');
+}
 
-function init() {
+
+function startGame() {
+    removeStartElements();
+    initLevel();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
-
-
     console.log('My Character is', world.character);
+}
+
+
+function removeStartElements(){
+    document.getElementById('canvas').style.backgroundImage = 'none';
+    document.getElementById('start-btn').style.display = 'none';
+    toggleControlBar();
+}
+
+
+function toggleControlBar() {
+    let controlbarelements = document.getElementById('control-bar');
+    controlbarelements.classList.toggle('d-none');
 }
 
 
@@ -28,9 +45,6 @@ window.addEventListener("keydown", (e) => {
     if (e.keyCode == 40) {
         keyboard.DOWN= true;
     }
-    if (e.keyCode == 68) {
-        keyboard.D= true;
-    }
 });
 
 
@@ -49,8 +63,5 @@ window.addEventListener("keyup", (e) => {
     }
     if (e.keyCode == 40) {
         keyboard.DOWN= false;
-    }
-    if (e.keyCode == 68) {
-        keyboard.D= false;
     }
 });
