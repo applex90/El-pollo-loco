@@ -31,8 +31,38 @@
 </head>
 
 <body onload="init()">
-    <canvas id="canvas" width="760" height="480"></canvas>
-    <div id="start-btn" class="start-btn" onclick="startGame()">PLAY</div>
+    <div class="container">
+        <canvas id="canvas" width="760" height="480">
+        </canvas>
+        <div id="start-btn" class="start-btn pointer" onclick="startGame()">PLAY</div>
+
+        <!-- Mobile control -->
+        <div class="mobile-control-bar" id="mobile-control-bar">
+            <div class="run-controls">
+                <div>
+                    <img class="pointer" src="img/key_img/arrow_left.png" id="left-btn">
+                    <span>run left</span>
+                </div>
+                <div>
+                    <img class="pointer" src="img/key_img/arrow_right.png" id="right-btn">
+                    <span>run right</span>
+                </div>
+            </div>
+            <div class="action-controls">
+                <div>
+                    <img class="pointer" src="img/key_img/arrow_up.png" id="up-btn">
+                    <span>jump</span>
+                </div>
+                <div>
+                    <img class="pointer" src="img/key_img/arrow_space.png" id="space-btn">
+                    <span>throw</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Desktop control -->
     <div class="control-bar" id="control-bar">
         <div>
             <img src="img/key_img/arrow_left.png">
@@ -50,7 +80,7 @@
             <img src="img/key_img/arrow_space.png">
             <span>throw</span>
         </div>
-        <div id="show-controller" onmouseover="toggleControlBar()" onclick="toggleControlBar()">Controlbar</div>
+        <div id="show-controller" class="pointer"  onmouseover="toggleControlBar()" onclick="toggleControlBar()">Controlbar</div>
     </div>
 
 

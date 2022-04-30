@@ -11,24 +11,30 @@ body {
     font-size: 18px;
 }
 
+.container {
+    position: relative;
+    z-index: 1;
+}
+
 .start-btn {
     position: absolute;
     z-index: 1;
-    top: 50vh;
+    top: 94%;
+    left: 50%;
+    text-align: center;
     background-color: rgba(255, 222, 0, 0.9);
     border: 1px solid #000000;
     box-shadow: 6px 6px 0px #000000;
-    transform: skewX(-15deg);
+    transform: skewX(-15deg) translate(-50%, -50%);
     font-size: 48px;
     padding: 6px;
     letter-spacing: 6px;
-    cursor: pointer;
     user-select: none;
     transition: all 125ms ease-in-out;
 }
 
 .start-btn:hover {
-    transform: scale(1.2) skewX(-15deg);
+    transform: scale(1.2) skewX(-15deg) translate(-50%, -50%);
     background-color: #fee128;
 }
 
@@ -45,11 +51,11 @@ body {
     font-family: 'Gochi Hand', cursive;
     text-transform: uppercase;
     position: relative;
+    z-index: 0;
     transition: all 125ms ease-in-out;
 }
 
 .d-none {
-    /* z-index: -1; */
     transform: translateY(-110px);
 }
 
@@ -68,6 +74,47 @@ body {
     bottom: 2px;
     letter-spacing: 6px;
     color: lightgrey;
+}
+
+.mobile-control-bar{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    z-index: 2;
+}
+
+.mobile-control-bar span{
+    font-size: 12px;
+    font-family: 'Gochi Hand', cursive;
+    text-shadow: 0px 0px 12px #000000;
+}
+
+.run-controls, .action-controls {
+    display: flex;
+    align-items: center;
+    padding: 6px;
+    gap: 20px;
+    color: black;
+}
+
+.run-controls div, .action-controls div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    user-select: none;
+}
+
+.mobile-control-bar img{
+    border-radius: 50%;
+    box-shadow: 0 0 12px 0px rgb(0 0 0 / 60%);
+    user-select: none;
+}
+
+.pointer {
     cursor: pointer;
 }
 
@@ -80,29 +127,44 @@ canvas {
     z-index: 1;
 }
 
+
 /* Smartphone portrait*/
 @media only screen and (max-width: 760px) {
     canvas {
         width: 100%;
     }
 
-    * {
-        font-size: 12px;
-    }
-
-    .control-bar img {
-        width: 32px;
-        height: auto;
+    .mobile-control-bar{
+        display: flex;
     }
 
     .start-btn {
         font-size: 18px;
+        top: 16%;
     }
+
+    .control-bar{
+        display: none;
+    }
+
 }
 
 /* Smartphone landscape*/
 @media only screen and (max-height: 480px) {
     canvas {
         height: 100vh;
+    }  
+
+    .mobile-control-bar{
+        display: flex;
+    }
+
+    .start-btn {
+        font-size: 18px;
+        top: 16%;
+    }
+
+    .control-bar{
+        display: none;
     }
 }
