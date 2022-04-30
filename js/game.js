@@ -5,20 +5,17 @@ let keyboard = new Keyboard();
 
 function init() {
     console.info('Startscreen');
-    setEventListener();    
+    setEventListener();
 }
 
-function setEventListener(){
+
+function setEventListener() {
     defineElements();
     defineEvents();
-    console.log(up_element);
-    console.log(left_element);
-    console.log(space_element);
-    console.log(right_element);
 }
 
 
-function defineElements(){
+function defineElements() {
     up_element = document.getElementById('up-btn');
     space_element = document.getElementById('space-btn');
     left_element = document.getElementById('left-btn');
@@ -26,7 +23,7 @@ function defineElements(){
 }
 
 
-function defineEvents(){
+function defineEvents() {
     defineUP();
     defineSPACE();
     defineLEFT();
@@ -34,7 +31,7 @@ function defineEvents(){
 }
 
 
-function defineUP(){
+function defineUP() {
     up_element.addEventListener('touchstart', () => {
         keyboard.UP = true;
     });
@@ -42,18 +39,18 @@ function defineUP(){
     up_element.addEventListener('mousedown', () => {
         keyboard.UP = true;
     });
-    
+
     up_element.addEventListener('touchend', () => {
         keyboard.UP = false;
     });
-    
+
     up_element.addEventListener('mouseup', () => {
         keyboard.UP = false;
     });
 }
 
 
-function defineSPACE(){
+function defineSPACE() {
     space_element.addEventListener('touchstart', () => {
         keyboard.SPACE = true;
     });
@@ -61,7 +58,7 @@ function defineSPACE(){
     space_element.addEventListener('mousedown', () => {
         keyboard.SPACE = true;
     });
-    
+
     space_element.addEventListener('touchend', () => {
         keyboard.SPACE = false;
     });
@@ -72,7 +69,7 @@ function defineSPACE(){
 }
 
 
-function defineLEFT(){
+function defineLEFT() {
     left_element.addEventListener('touchstart', () => {
         keyboard.LEFT = true;
     });
@@ -80,7 +77,7 @@ function defineLEFT(){
     left_element.addEventListener('mousedown', () => {
         keyboard.LEFT = true;
     });
-    
+
     left_element.addEventListener('touchend', () => {
         keyboard.LEFT = false;
     });
@@ -91,7 +88,7 @@ function defineLEFT(){
 }
 
 
-function defineRIGHT(){
+function defineRIGHT() {
     right_element.addEventListener('touchstart', () => {
         keyboard.RIGHT = true;
     });
@@ -99,7 +96,7 @@ function defineRIGHT(){
     right_element.addEventListener('mousedown', () => {
         keyboard.RIGHT = true;
     });
-    
+
     right_element.addEventListener('touchend', () => {
         keyboard.RIGHT = false;
     });
@@ -108,6 +105,32 @@ function defineRIGHT(){
         keyboard.RIGHT = false;
     });
 }
+
+
+function showFullscreen() {
+    let canvas_element = document.getElementById("canvas");
+
+    if (canvas_element.requestFullscreen) {
+        canvas_element.requestFullscreen();
+    } else if (elem.webkitRequestFullscreen) { /* Safari */
+        canvas_element.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) { /* IE11 */
+        canvas_element.msRequestFullscreen();
+    }
+}
+
+
+
+function exitFullscreen() {
+    if (document.questFullscreen) {
+        document.exitFullscreen();
+    } else if (document.webkitRequestFullscreen) { /* Safari */
+        document.webkitExitFullscreen();
+    } else if (document.msRequestFullscreen) { /* IE11 */
+        document.msExitFullscreen();
+    }
+}
+
 
 
 function startGame() {

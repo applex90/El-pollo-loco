@@ -38,6 +38,17 @@ body {
     background-color: #fee128;
 }
 
+.fullscreen-btn{
+    position: absolute;
+    z-index: 1;
+    top: 20px;
+    right: 20px;
+}
+
+.fullscreen-btn i{
+    font-size:36px;
+}
+
 .control-bar {
     display: flex;
     align-items: center;

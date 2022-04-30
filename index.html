@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>EL POLLO LOCO</title>
     <script src="models/drawable-object.class.js"></script>
     <script src="models/movable-object.class.js"></script>
@@ -31,10 +32,13 @@
 </head>
 
 <body onload="init()">
-    <div class="container">
+    <div class="container" id="container">
         <canvas id="canvas" width="760" height="480">
         </canvas>
         <div id="start-btn" class="start-btn pointer" onclick="startGame()">PLAY</div>
+        <div id="fullscreen-btn" class="fullscreen-btn pointer" onclick="showFullscreen() ">
+            <i class="material-icons">fullscreen</i>
+        </div>
 
         <!-- Mobile control -->
         <div class="mobile-control-bar" id="mobile-control-bar">
@@ -80,7 +84,8 @@
             <img src="img/key_img/arrow_space.png">
             <span>throw</span>
         </div>
-        <div id="show-controller" class="pointer"  onmouseover="toggleControlBar()" onclick="toggleControlBar()">Controlbar</div>
+        <div id="show-controller" class="pointer" onmouseover="toggleControlBar()" onclick="toggleControlBar()">
+            Controlbar</div>
     </div>
 
 
