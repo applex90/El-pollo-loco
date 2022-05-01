@@ -38,14 +38,14 @@ body {
     background-color: #fee128;
 }
 
-.fullscreen-btn{
+.fullscreen-btn, .fullscreenexit-btn{
     position: absolute;
     z-index: 1;
     top: 20px;
     right: 20px;
 }
 
-.fullscreen-btn i{
+.fullscreen-btn i, .fullscreenexit-btn i{
     font-size:36px;
 }
 
@@ -70,6 +70,10 @@ body {
     transform: translateY(-110px);
 }
 
+.hide{
+    display: none;
+}
+
 .control-bar div {
     display: flex;
     z-index: 2;
@@ -88,8 +92,8 @@ body {
 }
 
 .mobile-control-bar{
-    width: 100%;
     position: absolute;
+    width: 100%;
     bottom: 0;
     display: none;
     align-items: center;
@@ -135,6 +139,7 @@ canvas {
     background-size: cover;
     background-position: right top;
     display: block;
+    pointer-events: none;
     z-index: 1;
 }
 
@@ -164,7 +169,7 @@ canvas {
 @media only screen and (max-height: 480px) {
     canvas {
         height: 100vh;
-    }  
+    } 
 
     .mobile-control-bar{
         display: flex;

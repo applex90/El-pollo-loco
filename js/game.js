@@ -1,17 +1,43 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let up_element, space_element, left_element, right_element;
 
 
 function init() {
     console.info('Startscreen');
+    checkOrientation();
     setEventListener();
 }
 
 
+function checkOrientation() {
+    if (window.matchMedia("(orientation: portrait)").matches) {
+        //show resize-button
+        document.getElementById('fullscreen-btn').classList.add('hide');
+        document.getElementById('fullscreenexit-btn').classList.add('hide');
+    }
+
+    if (window.matchMedia("(orientation: landscape)").matches) {
+        //disable resize-button
+        document.getElementById('fullscreenexit-btn').classList.add('hide');
+        document.getElementById('fullscreen-btn').classList.remove('hide');
+    }
+}
+
+
 function setEventListener() {
+    defineFullscreen();
     defineElements();
     defineEvents();
+}
+
+
+function defineFullscreen() {
+    document.addEventListener("fullscreenchange", () => {
+        document.getElementById('fullscreen-btn').classList.toggle('hide');
+        document.getElementById('fullscreenexit-btn').classList.toggle('hide');
+    });
 }
 
 
@@ -30,99 +56,104 @@ function defineEvents() {
     defineRIGHT();
 }
 
+function jumpUpStart(evt) {
+    evt.preventDefault()
+    keyboard.UP = true;
+}
+
+
+function jumpUpEnd(evt) {
+    evt.preventDefault()
+    keyboard.UP = false;
+}
+
+
+function spaceStart(evt) {
+    evt.preventDefault()
+    keyboard.SPACE = true;
+}
+
+
+function spaceEnd(evt) {
+    evt.preventDefault()
+    keyboard.SPACE = false;
+}
+
+
+function leftStart(evt) {
+    evt.preventDefault()
+    keyboard.LEFT = true;
+}
+
+
+function leftEnd(evt) {
+    evt.preventDefault()
+    keyboard.LEFT = false;
+}
+
+
+function rightStart(evt) {
+    evt.preventDefault()
+    keyboard.RIGHT = true;
+}
+
+
+function rightEnd(evt) {
+    evt.preventDefault()
+    keyboard.RIGHT = false;
+}
+
 
 function defineUP() {
-    up_element.addEventListener('touchstart', () => {
-        keyboard.UP = true;
-    });
-
-    up_element.addEventListener('mousedown', () => {
-        keyboard.UP = true;
-    });
-
-    up_element.addEventListener('touchend', () => {
-        keyboard.UP = false;
-    });
-
-    up_element.addEventListener('mouseup', () => {
-        keyboard.UP = false;
-    });
+    up_element.addEventListener('touchstart', jumpUpStart);
+    up_element.addEventListener('touchend', jumpUpEnd);
+    up_element.addEventListener('mousedown', jumpUpStart);
+    up_element.addEventListener('mouseup', jumpUpEnd);
 }
 
 
 function defineSPACE() {
-    space_element.addEventListener('touchstart', () => {
-        keyboard.SPACE = true;
-    });
-
-    space_element.addEventListener('mousedown', () => {
-        keyboard.SPACE = true;
-    });
-
-    space_element.addEventListener('touchend', () => {
-        keyboard.SPACE = false;
-    });
-
-    space_element.addEventListener('mouseup', () => {
-        keyboard.SPACE = false;
-    });
+    space_element.addEventListener('touchstart', spaceStart);
+    space_element.addEventListener('touchend', spaceEnd);
+    space_element.addEventListener('mousedown', spaceStart);
+    space_element.addEventListener('mouseup', spaceEnd);
 }
 
 
 function defineLEFT() {
-    left_element.addEventListener('touchstart', () => {
-        keyboard.LEFT = true;
-    });
-
-    left_element.addEventListener('mousedown', () => {
-        keyboard.LEFT = true;
-    });
-
-    left_element.addEventListener('touchend', () => {
-        keyboard.LEFT = false;
-    });
-
-    left_element.addEventListener('mouseup', () => {
-        keyboard.LEFT = false;
-    });
+    left_element.addEventListener('touchstart', leftStart);
+    left_element.addEventListener('touchend', leftEnd);
+    left_element.addEventListener('mousedown', leftStart);
+    left_element.addEventListener('mouseup', leftEnd);
 }
 
 
 function defineRIGHT() {
-    right_element.addEventListener('touchstart', () => {
-        keyboard.RIGHT = true;
-    });
-
-    right_element.addEventListener('mousedown', () => {
-        keyboard.RIGHT = true;
-    });
-
-    right_element.addEventListener('touchend', () => {
-        keyboard.RIGHT = false;
-    });
-
-    right_element.addEventListener('mouseup', () => {
-        keyboard.RIGHT = false;
-    });
+    right_element.addEventListener('touchstart', rightStart);
+    right_element.addEventListener('touchend', rightEnd);
+    right_element.addEventListener('mousedown', rightStart);
+    right_element.addEventListener('mouseup', rightEnd);
 }
 
 
 function showFullscreen() {
-    let canvas_element = document.getElementById("canvas");
+    let elem = document.getElementById('canvas');
 
-    if (canvas_element.requestFullscreen) {
-        canvas_element.requestFullscreen();
+    console.log(elem.requestFullscreen());
+    if (elem.requestFullscreen) {
+        elem.requestFullscreen();
     } else if (elem.webkitRequestFullscreen) { /* Safari */
-        canvas_element.webkitRequestFullscreen();
+        elem.webkitRequestFullscreen();
     } else if (elem.msRequestFullscreen) { /* IE11 */
-        canvas_element.msRequestFullscreen();
+        elem.msRequestFullscreen();
     }
 }
 
 
 
 function exitFullscreen() {
-    if (document.questFullscreen) {
+
+    if (document.exitFullscreen) {
         document.exitFullscreen();
     } else if (document.webkitRequestFullscreen) { /* Safari */
         document.webkitExitFullscreen();
