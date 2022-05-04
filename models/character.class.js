@@ -39,6 +39,7 @@ class Character extends MovableObject {
     ];
     world;
     walking_sound = new Audio('audio/running.mp3');
+    jumping_sound = new Audio('audio/jumping.mp3');
 
 
     constructor() {
@@ -56,20 +57,28 @@ class Character extends MovableObject {
 
         setInterval(() => {
             this.walking_sound.pause();
+
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.moveRight();
                 this.otherDirection = false;
-                this.walking_sound.play();
+                if (!this.world.keyboard.UP) {
+                    this.walking_sound.play();
+                }
             }
 
             if (this.world.keyboard.LEFT && this.x > 0) {
                 this.moveLeft();
                 this.otherDirection = true;
-                this.walking_sound.play();
+                if (!this.world.keyboard.UP) {
+                    this.walking_sound.play();
+                }
             }
 
             if (this.world.keyboard.UP && !this.isAboveGround()) {
                 this.jump();
+                this.jumping_sound.pause();
+                this.jumping_sound.currentTime = 0.13; //Reset time to 0.13s
+                this.jumping_sound.play();
             }
 
             this.world.camera_x = -this.x + 200;
