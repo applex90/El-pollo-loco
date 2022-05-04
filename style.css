@@ -94,7 +94,7 @@ body {
 .mobile-control-bar{
     position: absolute;
     width: 100%;
-    bottom: 0;
+    bottom: -5px;
     display: none;
     align-items: center;
     justify-content: space-between;
@@ -126,6 +126,7 @@ body {
 .mobile-control-bar img{
     border-radius: 50%;
     box-shadow: 0 0 12px 0px rgb(0 0 0 / 60%);
+    opacity: 0.8;
     user-select: none;
 }
 

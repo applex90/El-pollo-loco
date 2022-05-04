@@ -1,4 +1,4 @@
-class DrawableObjects {
+class DrawableObject {
     x = 120;
     y = 280;
     height = 150;
@@ -20,7 +20,7 @@ class DrawableObjects {
 
 
     drawFrame(ctx) {
-        if (this instanceof Character || this instanceof Chicken) {
+        if (this instanceof Character || this instanceof Chicken || this instanceof Bottle) {
             ctx.beginPath();
             ctx.lineWidth = '3';
             ctx.strokeStyle = 'blue';

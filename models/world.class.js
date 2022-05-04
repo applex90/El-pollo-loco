@@ -2,9 +2,11 @@ class World {
 
     character = new Character();
     level = level1;
-    enemies = level1.enemies;
+    enemies = level1.enemies; //to get access in world
     clouds = level1.clouds;
     backgroundObjects = level1.backgroundObjects;
+    bottles = level1.bottles;
+    coins = level1.coins;
     canvas;
     ctx;
     keyboard;
@@ -59,12 +61,13 @@ class World {
 
 
     draw() {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); //Clear at first then draw again...
 
         this.ctx.translate(this.camera_x, 0);
 
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.clouds);
+        
 
         // ----- Space for fixed objects
         this.ctx.translate(-this.camera_x, 0); //Back
@@ -76,6 +79,8 @@ class World {
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.throwableObjects);
+        this.addObjectsToMap(this.level.bottles);
+        this.addObjectsToMap(this.level.coins);
 
         this.ctx.translate(-this.camera_x, 0);
 
