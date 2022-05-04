@@ -61,14 +61,14 @@ class Character extends MovableObject {
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.moveRight();
                 this.otherDirection = false;
-                this.walking_sound.play();
+                this.playWalkingSound();
 
             }
 
             if (this.world.keyboard.LEFT && this.x > 0) {
                 this.moveLeft();
                 this.otherDirection = true;
-                this.walking_sound.play();
+                this.playWalkingSound();
 
             }
 
@@ -99,6 +99,13 @@ class Character extends MovableObject {
                 }
             }
         }, 50);
+    }
+    
+
+    playWalkingSound() {
+        if (!this.isAboveGround()) {
+            this.walking_sound.play();
+        }
     }
 
 }
