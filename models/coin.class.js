@@ -1,16 +1,17 @@
 class Coin extends CollectableObject {
-    previousY = 90;
-    
+    // static previousY = 90;
+
     IMAGES_COLLECTABLE_COINS = [
         'img/8.Coin/Moneda1.png',
         'img/8.Coin/Moneda2.png'
     ];
 
-    constructor() {
+    constructor(pos) {
         super().loadImage('img/8.Coin/Moneda1.png');
         this.loadImages(this.IMAGES_COLLECTABLE_COINS);
-        this.x = 700 + Math.random() * (1400);
-        this.structure();
+        this.x = pos[0];
+        this.y = pos[1];
+        // this.structure();
         this.animate();
     }
 
@@ -21,8 +22,8 @@ class Coin extends CollectableObject {
         }, 500)
     }
 
-    structure() {
-        this.y = this.previousY;
-        Coin.previousY = this.previousY + 30;
-    }
+    // structure() {
+    //     this.y = Coin.previousY;
+    //     Coin.previousY = Coin.previousY + 30;
+    // }
 }

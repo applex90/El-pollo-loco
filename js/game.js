@@ -6,24 +6,24 @@ let up_element, space_element, left_element, right_element;
 
 function init() {
     console.info('Startscreen');
-    checkOrientation();
+    //checkOrientation();
     setEventListener();
 }
 
 
-function checkOrientation() {
-    if (window.matchMedia("(orientation: portrait)").matches) {
-        //show resize-button
-        document.getElementById('fullscreen-btn').classList.add('hide');
-        document.getElementById('fullscreenexit-btn').classList.add('hide');
-    }
+// function checkOrientation() {
+//     if (window.matchMedia("(orientation: portrait)").matches) {
+//         //show resize-button
+//         document.getElementById('fullscreen-btn').classList.add('hide');
+//         document.getElementById('fullscreenexit-btn').classList.add('hide');
+//     }
 
-    if (window.matchMedia("(orientation: landscape)").matches) {
-        //disable resize-button
-        document.getElementById('fullscreenexit-btn').classList.add('hide');
-        document.getElementById('fullscreen-btn').classList.remove('hide');
-    }
-}
+//     if (window.matchMedia("(orientation: landscape)").matches) {
+//         //disable resize-button
+//         document.getElementById('fullscreenexit-btn').classList.add('hide');
+//         document.getElementById('fullscreen-btn').classList.remove('hide');
+//     }
+// }
 
 
 function setEventListener() {

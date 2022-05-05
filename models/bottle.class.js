@@ -18,4 +18,5 @@ class Bottle extends CollectableObject {
             this.playAnimation(this.IMAGES_COLLECTABLE_BOTTLES);
         }, 500)
     }
+
 }

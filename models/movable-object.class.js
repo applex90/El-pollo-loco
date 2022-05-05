@@ -4,6 +4,8 @@ class MovableObject extends DrawableObject {
     speedY = 0;
     acceleration = 2.5;
     energy = 100;
+    bottles = 0;
+    coins = 0;
     lastHit = 0;
 
 
@@ -16,12 +18,28 @@ class MovableObject extends DrawableObject {
     }
 
 
-    hit() {
+    hitEnemy() {
         this.energy -= 5;
         if (this.energy < 0) {
             this.energy = 0;
         } else {
             this.lastHit = new Date().getTime();
+        }
+    }
+
+    
+    hitBottle() {
+        this.bottles += 10;
+        if (this.bottles >= 100) {
+            this.bottles = 100;
+        }
+    }
+
+
+    hitCoin() {
+        this.coins += 5;
+        if (this.coins >= 100) {
+            this.coins = 100;
         }
     }
 

@@ -34,19 +34,45 @@ class World {
 
     run() {
         setInterval(() => {
-            this.checkCollisions();
+            this.checkCollisionsWithEnemy();
+            this.checkCollisionsWithBottle();
+            this.checkCollisionsWithCoin();
             this.checkThrowObjects();
         }, 200);
     }
 
 
 
-    checkCollisions() {
+    checkCollisionsWithEnemy() {
         this.level.enemies.forEach(enemy => {
             if (this.character.isColliding(enemy)) {
                 //console.log('collision with character, energy ', this.character.energy);
-                this.character.hit();
+                this.character.hitEnemy();
                 this.energyBar.setPercentage(this.character.energy);
+            };
+        })
+    }
+
+
+    checkCollisionsWithBottle() {
+        this.level.bottles.forEach((bottle, index) => {
+            if (this.character.isColliding(bottle)) {
+                //console.log('collision with character, bottles ', bottle);
+                this.character.hitBottle();
+                this.bottles.splice(index, 1);
+                this.botellaBar.setPercentage(this.character.bottles);
+            };
+        })
+    }
+
+
+    checkCollisionsWithCoin() {
+        this.level.coins.forEach((coin, index) => {
+            if (this.character.isColliding(coin)) {
+                console.log('collision with character, coins ', coin);
+                this.character.hitCoin();
+                this.coins.splice(index, 1);
+                this.barraBar.setPercentage(this.character.coins);
             };
         })
     }
