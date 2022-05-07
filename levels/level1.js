@@ -5,12 +5,14 @@ let directionChange = 0;
 let coinCointer = 0;
 
 function initLevel() {
-
+    createNewChicken();
 
     level1 = new Level([
-        new Chicken(),
-        new Chicken(),
-        new Chicken(),
+        new Chicken(200),
+        new Chicken(650),
+        new Chicken(850),
+        new Chicken(1180),
+        new Chicken(1500),
         new Endboss()
     ],
         [
@@ -51,31 +53,55 @@ function initLevel() {
             new Bottle(),
         ],
         [
-            new Coin(getSnakedCoins()),
-            new Coin(getSnakedCoins()),
-            new Coin(getSnakedCoins()),
-            new Coin(getSnakedCoins()),
-            new Coin(getSnakedCoins()),
-            new Coin(getSnakedCoins()),
-            new Coin(getSnakedCoins()),
-            new Coin(getSnakedCoins()),
-            new Coin(getSnakedCoins()),
-            new Coin(getSnakedCoins()),
-            new Coin(getSnakedCoins()),
-            new Coin(getSnakedCoins()),
-            new Coin(getSnakedCoins()),
-            new Coin(getSnakedCoins()),
-            new Coin(getSnakedCoins()),
-            new Coin(getSnakedCoins()),
-            new Coin(getSnakedCoins()),
-            new Coin(getSnakedCoins()),
-            new Coin(getSnakedCoins()),
-            new Coin(getSnakedCoins())
+            new Coin(getMontainStructuredCoins()),
+            new Coin(getMontainStructuredCoins()),
+            new Coin(getMontainStructuredCoins()),
+            new Coin(getMontainStructuredCoins()),
+            new Coin(getMontainStructuredCoins()),
+            new Coin(getMontainStructuredCoins()),
+            new Coin(getMontainStructuredCoins()),
+            new Coin(getMontainStructuredCoins()),
+            new Coin(getMontainStructuredCoins()),
+            new Coin(getMontainStructuredCoins()),
+            new Coin(getMontainStructuredCoins()),
+            new Coin(getMontainStructuredCoins()),
+            new Coin(getMontainStructuredCoins()),
+            new Coin(getMontainStructuredCoins()),
+            new Coin(getMontainStructuredCoins()),
+            new Coin(getMontainStructuredCoins()),
+            new Coin(getMontainStructuredCoins()),
+            new Coin(getMontainStructuredCoins()),
+            new Coin(getMontainStructuredCoins()),
+            new Coin(getMontainStructuredCoins())
         ]);
 }
 
 
-function getSnakedCoins() {
+function createNewChicken() {
+    myInterval = setInterval(() => {
+        let offset = world.character.x + 670;
+        let positionEndboss = world.enemies[level1.enemies.length - 1].x;
+        spliceChicken(offset, positionEndboss);
+        console.log(new Date().getSeconds());
+        clearInterval(myInterval);
+        createNewChicken();
+    }, randomTime());
+}
+
+
+function spliceChicken(offset, positionEndboss){
+    if (offset < positionEndboss) {
+        let chicken = new Chicken(offset);
+        level1.enemies.splice(-1, 0, chicken);
+    }
+}
+
+
+function randomTime() {
+    return Math.floor(3000 + (Math.random() * 15000));
+}
+
+function getMontainStructuredCoins() {
     calcPositionX();
     checkPositionY();
     changeDirection();
@@ -85,7 +111,7 @@ function getSnakedCoins() {
 
 function calcPositionX() {
     if (coinCointer < 5) {
-        previousX = previousX + 40;
+        previousX = previousX + 65;
         coinCointer += 1;
     } else {
         coinCointer = 1;

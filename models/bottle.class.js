@@ -1,5 +1,5 @@
 class Bottle extends CollectableObject {
-    y = 350;
+    y = 370;
     IMAGES_COLLECTABLE_BOTTLES = [
         'img/6.botella/2.Botella_enterrada1.png',
         'img/6.botella/2.Botella_enterrada2.png'

@@ -38,15 +38,15 @@ body {
     background-color: #fee128;
 }
 
-.fullscreen-btn, .fullscreenexit-btn{
+.fullscreen-btn, .fullscreenexit-btn {
     position: absolute;
     z-index: 1;
     top: 20px;
     right: 20px;
 }
 
-.fullscreen-btn i, .fullscreenexit-btn i{
-    font-size:36px;
+.fullscreen-btn i, .fullscreenexit-btn i {
+    font-size: 36px;
 }
 
 .control-bar {
@@ -70,7 +70,7 @@ body {
     transform: translateY(-110px);
 }
 
-.hide{
+.hide {
     display: none;
 }
 
@@ -91,7 +91,7 @@ body {
     color: lightgrey;
 }
 
-.mobile-control-bar{
+.mobile-control-bar {
     position: absolute;
     width: 100%;
     bottom: -5px;
@@ -102,7 +102,7 @@ body {
     z-index: 2;
 }
 
-.mobile-control-bar span{
+.mobile-control-bar span {
     font-size: 12px;
     font-family: 'Gochi Hand', cursive;
     text-shadow: 0px 0px 12px #000000;
@@ -112,21 +112,23 @@ body {
     display: flex;
     align-items: center;
     padding: 6px;
-    gap: 20px;
+    gap: 24px;
     color: black;
 }
 
-.run-controls div, .action-controls div{
+.run-controls div, .action-controls div {
     display: flex;
     flex-direction: column;
     align-items: center;
     user-select: none;
 }
 
-.mobile-control-bar img{
+.mobile-control-bar img {
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     box-shadow: 0 0 12px 0px rgb(0 0 0 / 60%);
-    opacity: 0.8;
+    opacity: 0.6;
     user-select: none;
 }
 
@@ -151,16 +153,16 @@ canvas {
         width: 100%;
     }
 
-    .mobile-control-bar{
+    .mobile-control-bar {
         display: flex;
     }
 
     .start-btn {
-        font-size: 18px;
+        font-size: 24px;
         top: 16%;
     }
 
-    .control-bar{
+    .control-bar {
         display: none;
     }
 
@@ -170,18 +172,18 @@ canvas {
 @media only screen and (max-height: 480px) {
     canvas {
         height: 100vh;
-    } 
+    }
 
-    .mobile-control-bar{
+    .mobile-control-bar {
         display: flex;
     }
 
     .start-btn {
-        font-size: 18px;
-        top: 16%;
+        font-size: 24px;
+        top: 56%;
     }
 
-    .control-bar{
+    .control-bar {
         display: none;
     }
 }

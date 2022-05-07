@@ -7,7 +7,8 @@ class MovableObject extends DrawableObject {
     bottles = 0;
     coins = 0;
     lastHit = 0;
-
+    coin_sound = new Audio('audio/coin.mp3');
+    
 
     // character.isColliding(chicken);
     isColliding(mo) {
@@ -29,7 +30,7 @@ class MovableObject extends DrawableObject {
 
     
     hitBottle() {
-        this.bottles += 10;
+        this.bottles += 20;
         if (this.bottles >= 100) {
             this.bottles = 100;
         }
@@ -38,9 +39,16 @@ class MovableObject extends DrawableObject {
 
     hitCoin() {
         this.coins += 5;
+        this.resetCoinSound()
         if (this.coins >= 100) {
             this.coins = 100;
         }
+    }
+
+    resetCoinSound() {
+        this.coin_sound.pause();
+        this.coin_sound.currentTime = 0;
+        this.coin_sound.play();
     }
 
 
@@ -70,7 +78,7 @@ class MovableObject extends DrawableObject {
         if (this instanceof ThrowableObject) { //Throwable objects should always fall
             return true;
         } else {
-            return this.y < 140;
+            return this.y < 155;
         }
     }
 

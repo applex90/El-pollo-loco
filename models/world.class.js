@@ -69,7 +69,7 @@ class World {
     checkCollisionsWithCoin() {
         this.level.coins.forEach((coin, index) => {
             if (this.character.isColliding(coin)) {
-                console.log('collision with character, coins ', coin);
+                //console.log('collision with character, coins ', coin);
                 this.character.hitCoin();
                 this.coins.splice(index, 1);
                 this.barraBar.setPercentage(this.character.coins);
@@ -80,8 +80,22 @@ class World {
 
     checkThrowObjects() {
         if (this.keyboard.SPACE) {
-            let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
-            this.throwableObjects.push(bottle);
+            if (this.character.bottles > 0) {
+                let bottle = this.createDirectionForBottle();
+                
+                this.throwableObjects.push(bottle);
+                this.character.bottles -= 1;
+                this.botellaBar.setPercentage(this.character.bottles + 19);
+            }
+        }
+    }
+
+
+    createDirectionForBottle() {
+        if (!world.character.otherDirection) {
+            return new ThrowableObject(this.character.x + 100, this.character.y + 100);
+        } else if (world.character.otherDirection) {
+            return new ThrowableObject(this.character.x, this.character.y + 100);
         }
     }
 
@@ -93,7 +107,7 @@ class World {
 
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.clouds);
-        
+
 
         // ----- Space for fixed objects
         this.ctx.translate(-this.camera_x, 0); //Back
@@ -102,11 +116,11 @@ class World {
         this.addToMap(this.botellaBar);
         this.ctx.translate(this.camera_x, 0); //Forwards
 
-        this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.throwableObjects);
         this.addObjectsToMap(this.level.bottles);
         this.addObjectsToMap(this.level.coins);
+        this.addToMap(this.character);
 
         this.ctx.translate(-this.camera_x, 0);
 

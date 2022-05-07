@@ -6,6 +6,7 @@ class Coin extends CollectableObject {
         'img/8.Coin/Moneda2.png'
     ];
 
+
     constructor(pos) {
         super().loadImage('img/8.Coin/Moneda1.png');
         this.loadImages(this.IMAGES_COLLECTABLE_COINS);
