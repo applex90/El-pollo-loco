@@ -4,7 +4,9 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
+    background-color: #f19d4f;
     margin: 0;
+    padding: 0;
 }
 
 * {
@@ -94,7 +96,7 @@ body {
 .mobile-control-bar {
     position: absolute;
     width: 100%;
-    bottom: -5px;
+    bottom: 0;
     display: none;
     align-items: center;
     justify-content: space-between;
@@ -146,6 +148,17 @@ canvas {
     z-index: 1;
 }
 
+#game-over-screen{
+    position: absolute;
+    background-size: cover;
+    background-position: top;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-image: url('img/9.Intro _ Outro Image/_Game over_ screen/4.Game over!.png');
+}
+
 
 /* Smartphone portrait*/
 @media only screen and (max-width: 760px) {
@@ -166,10 +179,21 @@ canvas {
         display: none;
     }
 
+    body {
+        overflow-y: hidden;
+    }
+
 }
 
 /* Smartphone landscape*/
 @media only screen and (max-height: 480px) {
+    body {
+        justify-content:unset;
+        overflow-y: hidden;
+        height: 100%;
+    }
+
+
     canvas {
         height: 100vh;
     }

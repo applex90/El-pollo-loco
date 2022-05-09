@@ -33,7 +33,7 @@ class World {
 
 
     run() {
-        setInterval(() => {
+        this.runTimer = setInterval(() => {
             this.checkCollisionsWithEnemy();
             this.checkCollisionsWithBottle();
             this.checkCollisionsWithCoin();
@@ -41,6 +41,10 @@ class World {
         }, 200);
     }
 
+    
+    stopRun(){
+        clearInterval(this.runTimer);
+    }
 
 
     checkCollisionsWithEnemy() {
@@ -49,8 +53,25 @@ class World {
                 //console.log('collision with character, energy ', this.character.energy);
                 this.character.hitEnemy();
                 this.energyBar.setPercentage(this.character.energy);
+                this.checkDeath();
             };
         })
+    }
+
+
+    checkDeath(){
+        if(this.character.energy == 0) {
+            this.showGameOverScreen();
+        }
+    }
+
+
+    showGameOverScreen(){
+        this.stopRun();
+        console.info('Gameoverscreen');
+        document.getElementById('game-over-screen').classList.remove('hide');
+        document.getElementById('start-btn').textContent="REPLAY";
+        document.getElementById('start-btn').style.display = 'block';
     }
 
 

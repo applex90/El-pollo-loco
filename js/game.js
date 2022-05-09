@@ -3,27 +3,29 @@ let world;
 let keyboard = new Keyboard();
 let up_element, space_element, left_element, right_element;
 
+window.addEventListener("orientationchange", function () {
+    location.reload();
+}, false);
+
 
 function init() {
     console.info('Startscreen');
-    //checkOrientation();
     setEventListener();
+    checkOrientation()
 }
 
 
-// function checkOrientation() {
-//     if (window.matchMedia("(orientation: portrait)").matches) {
-//         //show resize-button
-//         document.getElementById('fullscreen-btn').classList.add('hide');
-//         document.getElementById('fullscreenexit-btn').classList.add('hide');
-//     }
+function checkOrientation() {
+    if (window.matchMedia("(orientation: landscape)").matches) {
+        if (window.innerHeight < 480) {
 
-//     if (window.matchMedia("(orientation: landscape)").matches) {
-//         //disable resize-button
-//         document.getElementById('fullscreenexit-btn').classList.add('hide');
-//         document.getElementById('fullscreen-btn').classList.remove('hide');
-//     }
-// }
+            newHeight = window.innerHeight;
+            document.getElementById('canvas').style.height = `${newHeight}px`;
+        } else {
+            document.getElementById('canvas').style.height = `100%`;
+        }
+    }
+}
 
 
 function setEventListener() {
@@ -176,6 +178,7 @@ function startGame() {
 function removeStartElements() {
     document.getElementById('canvas').style.backgroundImage = 'none';
     document.getElementById('start-btn').style.display = 'none';
+    document.getElementById('game-over-screen').classList.add('hide');
     toggleControlBar();
 }
 
