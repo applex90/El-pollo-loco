@@ -8,7 +8,7 @@ function initLevel() {
     createNewChicken();
 
     level1 = new Level([
-        new Chicken(200),
+        new Chicken(400),
         new Chicken(650),
         new Chicken(850),
         new Chicken(1180),
@@ -82,7 +82,6 @@ function createNewChicken() {
         let offset = world.character.x + 670;
         let positionEndboss = world.enemies[level1.enemies.length - 1].x;
         spliceChicken(offset, positionEndboss);
-        console.log(new Date().getSeconds());
         clearInterval(myInterval);
         createNewChicken();
     }, randomTime());

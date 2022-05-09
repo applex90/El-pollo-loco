@@ -82,10 +82,9 @@ class World {
         if (this.keyboard.SPACE) {
             if (this.character.bottles > 0) {
                 let bottle = this.createDirectionForBottle();
-                
                 this.throwableObjects.push(bottle);
                 this.character.bottles -= 1;
-                this.botellaBar.setPercentage(this.character.bottles + 19);
+                this.botellaBar.setPercentage(this.character.bottles);
             }
         }
     }
