@@ -8,7 +8,8 @@ class MovableObject extends DrawableObject {
     coins = 0;
     lastHit = 0;
     coin_sound = new Audio('audio/coin.mp3');
-    
+    bottle_sound = new Audio('audio/bottle.mp3');
+
 
     // character.isColliding(chicken);
     isColliding(mo) {
@@ -28,9 +29,10 @@ class MovableObject extends DrawableObject {
         }
     }
 
-    
+
     hitBottle() {
         this.bottles += 20;
+        this.resetBottleSound();
         if (this.bottles >= 100) {
             this.bottles = 100;
         }
@@ -45,10 +47,30 @@ class MovableObject extends DrawableObject {
         }
     }
 
+
     resetCoinSound() {
-        this.coin_sound.pause();
-        this.coin_sound.currentTime = 0;
-        this.coin_sound.play();
+        let playCoin = this.coin_sound.play();
+        if (playCoin !== undefined) {
+            playCoin.then(() => {
+                setTimeout(() => {
+                    this.coin_sound.pause();
+                    this.coin_sound.currentTime = 0; //Reset time to 0 s
+                }, 60);
+            })
+        }
+    }
+
+
+    resetBottleSound() {
+        let playBottle = this.bottle_sound.play();
+        if (playBottle !== undefined) {
+            playBottle.then(() => {
+                setTimeout(() => {
+                    this.bottle_sound.pause();
+                    this.bottle_sound.currentTime = 0; //Reset time to 0 s
+                }, 300);
+            })
+        }
     }
 
 

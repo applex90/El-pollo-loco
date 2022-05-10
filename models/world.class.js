@@ -41,9 +41,10 @@ class World {
         }, 200);
     }
 
-    
-    stopRun(){
+
+    stopActions() {
         clearInterval(this.runTimer);
+        clearInterval(this.character.animateInterval);
     }
 
 
@@ -59,19 +60,20 @@ class World {
     }
 
 
-    checkDeath(){
-        if(this.character.energy == 0) {
+    checkDeath() {
+        if (this.character.energy == 0) {
             this.showGameOverScreen();
         }
     }
 
 
-    showGameOverScreen(){
-        this.stopRun();
-        console.info('Gameoverscreen');
+    showGameOverScreen() {
+        this.stopActions();
+        console.info('Gameover');
         document.getElementById('game-over-screen').classList.remove('hide');
-        document.getElementById('start-btn').textContent="REPLAY";
+        document.getElementById('start-btn').textContent = "NEW GAME";
         document.getElementById('start-btn').style.display = 'block';
+        document.getElementById('start-btn').onclick = function () { location.reload(); };
     }
 
 
@@ -103,9 +105,14 @@ class World {
         if (this.keyboard.SPACE) {
             if (this.character.bottles > 0) {
                 let bottle = this.createDirectionForBottle();
-                this.throwableObjects.push(bottle);
-                this.character.bottles -= 1;
-                this.botellaBar.setPercentage(this.character.bottles);
+                
+                this.bottles.lastThrow = new Date().getTime(); // Zugriff
+                
+                if (!this.bottles.isThrown()) { // Zugriff
+                    this.throwableObjects.push(bottle);
+                    this.character.bottles -= 1;
+                    this.botellaBar.setPercentage(this.character.bottles);
+                }
             }
         }
     }

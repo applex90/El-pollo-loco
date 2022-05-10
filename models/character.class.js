@@ -55,7 +55,7 @@ class Character extends MovableObject {
 
     animate() {
 
-        setInterval(() => {
+        this.animateInterval = setInterval(() => {
 
 
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {

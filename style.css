@@ -4,7 +4,10 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-color: #f19d4f;
+    background-image: url('img/5.Fondo/Capas/5.cielo_1920-1080px.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
     margin: 0;
     padding: 0;
 }
@@ -56,6 +59,7 @@ body {
     align-items: center;
     justify-content: space-around;
     background-color: #994409;
+    border-radius: 0px 0px 20px 20px;
     padding: 16px;
     max-width: 760px;
     width: 100%;
@@ -143,6 +147,7 @@ canvas {
     background-image: url('img/9.Intro _ Outro Image/Start Screen/Opción 1.png');
     background-size: cover;
     background-position: right top;
+    border-radius: 20px 20px 0px 0px;
     display: block;
     pointer-events: none;
     z-index: 1;
@@ -164,6 +169,7 @@ canvas {
 @media only screen and (max-width: 760px) {
     canvas {
         width: 100%;
+        border-radius: 20px;
     }
 
     .mobile-control-bar {
@@ -196,6 +202,7 @@ canvas {
 
     canvas {
         height: 100vh;
+        border-radius: 20px;
     }
 
     .mobile-control-bar {

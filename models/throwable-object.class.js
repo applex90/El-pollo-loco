@@ -15,6 +15,7 @@ class ThrowableObject extends MovableObject {
         this.throwToDirection();
     }
 
+
     throwToDirection() {
         if (!world.character.otherDirection) {
             setInterval(() => {
