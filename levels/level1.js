@@ -3,6 +3,7 @@ let previousX = 300;
 let previousY = 180;
 let directionChange = 0;
 let coinCointer = 0;
+let chickenInterval;
 
 function initLevel() {
     createNewChicken();
@@ -78,11 +79,11 @@ function initLevel() {
 
 
 function createNewChicken() {
-    myInterval = setInterval(() => {
+    chickenInterval = setInterval(() => {
         let offset = world.character.x + 670;
         let positionEndboss = world.enemies[level1.enemies.length - 1].x;
         spliceChicken(offset, positionEndboss);
-        clearInterval(myInterval);
+        clearInterval(chickenInterval);
         createNewChicken();
     }, randomTime());
 }

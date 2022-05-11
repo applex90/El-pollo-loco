@@ -15,7 +15,10 @@ class World {
     barraBar = new BarBarra();
     botellaBar = new BarBotella();
     throwableObjects = [];
-
+    canyon_sound = new Audio('audio/canyon.mp3');
+    gameover_sound = new Audio('audio/gameover.mp3');
+    
+    
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -24,6 +27,12 @@ class World {
         this.draw();
         this.setWorld();
         this.run();
+        this.playBackgroundSound();
+    }
+
+    playBackgroundSound() {
+        this.canyon_sound.play();
+        this.canyon_sound.loop = true;
     }
 
 
@@ -45,6 +54,9 @@ class World {
     stopActions() {
         clearInterval(this.runTimer);
         clearInterval(this.character.animateInterval);
+        clearInterval(chickenInterval);
+        this.canyon_sound.pause();
+        this.gameover_sound.play();
     }
 
 
