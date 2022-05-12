@@ -5,7 +5,7 @@ let up_element, space_element, left_element, right_element;
 
 window.addEventListener("resize", function () {
     checkOrientation();
-}, false);
+});
 
 
 function init() {
