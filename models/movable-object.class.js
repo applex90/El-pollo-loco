@@ -55,7 +55,7 @@ class MovableObject extends DrawableObject {
                 setTimeout(() => {
                     this.coin_sound.pause();
                     this.coin_sound.currentTime = 0; //Reset time to 0 s
-                }, 60);
+                }, 500);
             })
         }
     }
@@ -68,7 +68,7 @@ class MovableObject extends DrawableObject {
                 setTimeout(() => {
                     this.bottle_sound.pause();
                     this.bottle_sound.currentTime = 0; //Reset time to 0 s
-                }, 300);
+                }, 500);
             })
         }
     }

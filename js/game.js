@@ -3,27 +3,27 @@ let world;
 let keyboard = new Keyboard();
 let up_element, space_element, left_element, right_element;
 
-window.addEventListener("orientationchange", function () {
-    location.reload();
+window.addEventListener("resize", function () {
+    checkOrientation();
 }, false);
 
 
 function init() {
     console.info('Startscreen');
     setEventListener();
-    checkOrientation()
+    checkOrientation();
 }
 
 
 function checkOrientation() {
     if (window.matchMedia("(orientation: landscape)").matches) {
         if (window.innerHeight < 480) {
-
             newHeight = window.innerHeight;
             document.getElementById('canvas').style.height = `${newHeight}px`;
-        } else {
-            document.getElementById('canvas').style.height = `100%`;
         }
+    }
+    else {
+        document.getElementById('canvas').style.height = `100%`;
     }
 }
 
