@@ -30,6 +30,7 @@ class World {
         this.playBackgroundSound();
     }
 
+
     playBackgroundSound() {
         this.canyon_sound.play();
         this.canyon_sound.loop = true;
@@ -116,11 +117,9 @@ class World {
     checkThrowObjects() {
         if (this.keyboard.SPACE) {
             if (this.character.bottles > 0) {
-                let bottle = this.createDirectionForBottle();
-                
-                this.bottles.lastThrow = new Date().getTime(); // Zugriff
-                
-                if (!this.bottles.isThrown()) { // Zugriff
+                let bottle = this.createDirectionForBottle(); 
+                if (this.character.isThrown()) {
+                    this.character.lastThrow = new Date().getTime();
                     this.throwableObjects.push(bottle);
                     this.character.bottles -= 1;
                     this.botellaBar.setPercentage(this.character.bottles);

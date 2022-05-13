@@ -4,7 +4,6 @@ class Bottle extends CollectableObject {
         'img/6.botella/2.Botella_enterrada1.png',
         'img/6.botella/2.Botella_enterrada2.png'
     ];
-    lastThrow = 0;
 
     constructor() {
         super().loadImage('img/6.botella/2.Botella_enterrada1.png');
@@ -19,12 +18,5 @@ class Bottle extends CollectableObject {
             this.playAnimation(this.IMAGES_COLLECTABLE_BOTTLES);
         }, 500)
     }
-
-
-    isThrown() {
-        let timepassed = new Date().getTime() - this.lastThrow; //Differece in ms
-        timepassed = timepassed / 1000; //Difference in s
-        return timepassed < 2; // returned true or false if timepassed < 2 s
-    }    
 
 }

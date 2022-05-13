@@ -7,6 +7,7 @@ class MovableObject extends DrawableObject {
     bottles = 0;
     coins = 0;
     lastHit = 0;
+    lastThrow = 0;
     coin_sound = new Audio('audio/coin.mp3');
     bottle_sound = new Audio('audio/bottle.mp3');
 
@@ -83,6 +84,15 @@ class MovableObject extends DrawableObject {
         let timepassed = new Date().getTime() - this.lastHit; //Differece in ms
         timepassed = timepassed / 1000; //Difference in s
         return timepassed < 1; // returned true or false if timepassed < 1 s
+    }
+
+
+    isThrown() {
+        let timepassedThrown = new Date().getTime() - this.lastThrow; //Differece in ms
+        timepassedThrown = timepassedThrown / 1000; //Difference in s
+        // console.log(timepassedThrown);
+        // console.log(this.lastThrow);
+        return timepassedThrown > 1; // returned true or false if timepassed > 1 s
     }
 
 
