@@ -50,28 +50,16 @@ class MovableObject extends DrawableObject {
 
 
     resetCoinSound() {
-        let playCoin = this.coin_sound.play();
-        if (playCoin !== undefined) {
-            playCoin.then(() => {
-                setTimeout(() => {
-                    this.coin_sound.pause();
-                    this.coin_sound.currentTime = 0; //Reset time to 0 s
-                }, 500);
-            })
-        }
+        this.coin_sound.loop = false;
+        this.coin_sound.currentTime = 0;
+        this.coin_sound.play();
     }
 
 
     resetBottleSound() {
-        let playBottle = this.bottle_sound.play();
-        if (playBottle !== undefined) {
-            playBottle.then(() => {
-                setTimeout(() => {
-                    this.bottle_sound.pause();
-                    this.bottle_sound.currentTime = 0; //Reset time to 0 s
-                }, 500);
-            })
-        }
+        this.bottle_sound.loop = false;
+        this.bottle_sound.currentTime = 0;
+        this.bottle_sound.play();
     }
 
 

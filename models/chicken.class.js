@@ -30,6 +30,8 @@ class Chicken extends MovableObject {
 
     
     playSoundAlarm() {
-            this.alarm_sound.play();
+        this.alarm_sound.loop = false;
+        this.alarm_sound.currentTime = 0;
+        this.alarm_sound.play();
     }
 }

@@ -102,22 +102,19 @@ class Character extends MovableObject {
         }, 50);
     }
 
+
     playWalkingSound() {
         if (!this.isAboveGround()) {
+            this.walking_sound.loop = false;
             this.walking_sound.play();
         }
     }
 
+
     playJumpingSound() {
         let playJump = this.jumping_sound.play();
-        if (playJump !== undefined) {
-            playJump.then(() => {
-                setTimeout(() => {
-                    this.jumping_sound.pause();
-                    this.jumping_sound.currentTime = 0.13; //Reset time to 0.13s
-                }, 250);
-            })
-        }
+         this.jumping_sound.loop = false;
+         this.jumping_sound.currentTime = 0.13;
+         this.jumping_sound.play();
     }
-  
 }
