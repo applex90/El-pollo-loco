@@ -93,7 +93,7 @@ class World {
     checkCollisionsWithBottle() {
         this.level.bottles.forEach((bottle, index) => {
             if (this.character.isColliding(bottle)) {
-                console.log('collision with character, bottles ', bottle);
+                //console.log('collision with character, bottles ', bottle);
                 this.character.hitBottle();
                 this.bottles.splice(index, 1);
                 this.botellaBar.setPercentage(this.character.bottles);
@@ -124,6 +124,7 @@ class World {
                     this.character.bottles -= 1;
                     this.botellaBar.setPercentage(this.character.bottles);
                 }
+                
             }
         }
     }

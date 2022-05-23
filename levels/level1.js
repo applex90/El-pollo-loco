@@ -79,7 +79,7 @@ function initLevel() {
 
 
 function createNewChicken() {
-    chickenInterval = setInterval(() => {
+    let chickenInterval = setInterval(() => {
         let offset = world.character.x + 670;
         let positionEndboss = world.enemies[level1.enemies.length - 1].x;
         spliceChicken(offset, positionEndboss);

@@ -10,7 +10,8 @@ class MovableObject extends DrawableObject {
     lastThrow = 0;
     coin_sound = new Audio('audio/coin.mp3');
     bottle_sound = new Audio('audio/bottle.mp3');
-    
+    gravityInterval;
+
 
     // character.isColliding(chicken);
     isColliding(mo) {
@@ -85,7 +86,7 @@ class MovableObject extends DrawableObject {
 
 
     applyGravity() {
-        setInterval(() => {
+        this.gravityInterval = setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration;
@@ -123,5 +124,19 @@ class MovableObject extends DrawableObject {
         let path = images[i];
         this.img = this.imageCache[path];
         this.currentImage++;
+    }
+
+
+    playAnimationBottleCrash(images) {
+        let crashInterval = setInterval(() => {
+            if (this.currentImage < images.length) {
+                let i = this.currentImage % images.length;
+                let path = images[i];
+                this.img = this.imageCache[path];
+                this.currentImage++;
+            } else {
+                clearInterval(crashInterval);
+            }
+        }, 250);
     }
 }
