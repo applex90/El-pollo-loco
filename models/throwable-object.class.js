@@ -21,13 +21,13 @@ class ThrowableObject extends MovableObject {
     }
 
     throw() {
-        this.speedY = 30;
+        this.speedY = 22;
         this.applyGravity();
         this.throwToDirection();
         this.isOnGround();
     }
 
-
+  
     isOnGround() {
         let fallInterval = setInterval(() => {
             if (this.y > 370) {
@@ -40,7 +40,7 @@ class ThrowableObject extends MovableObject {
         
     }
 
-
+    
     throwToDirection() {
         if (!world.character.otherDirection) {
             this.throwDirectionInterval = setInterval(() => {

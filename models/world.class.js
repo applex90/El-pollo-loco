@@ -15,10 +15,11 @@ class World {
     barraBar = new BarBarra();
     botellaBar = new BarBotella();
     throwableObjects = [];
+    enemyHeightStep = 5;
     canyon_sound = new Audio('audio/canyon.mp3');
     gameover_sound = new Audio('audio/gameover.mp3');
-    
-    
+
+
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -48,7 +49,8 @@ class World {
             this.checkCollisionsWithBottle();
             this.checkCollisionsWithCoin();
             this.checkThrowObjects();
-        }, 200);
+            this.checkThrowObjectsColissionWithEnemy();
+        }, 60);
     }
 
 
@@ -117,16 +119,49 @@ class World {
     checkThrowObjects() {
         if (this.keyboard.SPACE) {
             if (this.character.bottles > 0) {
-                let bottle = this.createDirectionForBottle(); 
+                let bottle = this.createDirectionForBottle();
                 if (this.character.isThrown()) {
                     this.character.lastThrow = new Date().getTime();
                     this.throwableObjects.push(bottle);
                     this.character.bottles -= 1;
                     this.botellaBar.setPercentage(this.character.bottles);
                 }
-                
             }
         }
+    }
+
+
+    checkThrowObjectsColissionWithEnemy() {
+        this.level.enemies.forEach(enemy => {
+            this.throwableObjects.forEach(object => {
+                if (object.isColliding(enemy)) {
+                    //console.log('index of bottle', this.throwableObjects.indexOf(object));
+                    //console.log('index of enemy', this.level.enemies.indexOf(enemy));
+                    let hittedEnemy = this.level.enemies.indexOf(enemy);
+                    if (this.level.enemies[hittedEnemy] instanceof Chicken) {
+                        this.sendEnemyToHeaven(hittedEnemy);
+                    }
+                }
+            })
+        })
+    }
+
+
+    sendEnemyToHeaven(hittedEnemy) {
+        let upInterval = setInterval(() => {
+            let stepUp = this.enemyHeightStep += 10;
+            let currentHeight = this.level.enemies[hittedEnemy].y;
+            this.level.enemies[hittedEnemy].y = currentHeight - stepUp;
+            if (this.inHeaven(hittedEnemy)) {
+                clearInterval(upInterval);
+                this.enemyHeightStep = 0;
+            }
+        }, 60);
+    }
+
+
+    inHeaven(hittedEnemy) {
+        return this.level.enemies[hittedEnemy].y + this.level.enemies[hittedEnemy].height < 0;
     }
 
 

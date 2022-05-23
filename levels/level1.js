@@ -51,7 +51,7 @@ function initLevel() {
             new Bottle(),
             new Bottle(),
             new Bottle(),
-            new Bottle(),
+            new Bottle()
         ],
         [
             new Coin(getMontainStructuredCoins()),
@@ -89,7 +89,7 @@ function createNewChicken() {
 }
 
 
-function spliceChicken(offset, positionEndboss){
+function spliceChicken(offset, positionEndboss) {
     if (offset < positionEndboss) {
         let chicken = new Chicken(offset);
         level1.enemies.splice(-1, 0, chicken);
