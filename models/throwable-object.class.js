@@ -31,10 +31,10 @@ class ThrowableObject extends MovableObject {
     isOnGround() {
         let fallInterval = setInterval(() => {
             if (this.y > 370) {
+                this.playAnimationBottleCrash(this.IMAGES_CRASHED_BOTTLES);
                 clearInterval(fallInterval);
                 clearInterval(this.gravityInterval);
                 clearInterval(this.throwDirectionInterval);
-                this.playAnimationBottleCrash(this.IMAGES_CRASHED_BOTTLES);
             }
         }, 20);
         

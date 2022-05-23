@@ -137,6 +137,6 @@ class MovableObject extends DrawableObject {
             } else {
                 clearInterval(crashInterval);
             }
-        }, 250);
+        }, 120);
     }
 }
