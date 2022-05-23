@@ -6,6 +6,12 @@ class DrawableObject {
     img;
     imageCache = {};
     currentImage = 0;
+    offset = {
+        top: 40,
+        left: 30,
+        right: 40,
+        bottom: 30
+     };
 
 
     draw(ctx) {
@@ -20,7 +26,7 @@ class DrawableObject {
 
 
     drawFrame(ctx) {
-        if (this instanceof Character) {
+        if (1==0) { //this instanceof Character
             ctx.beginPath();
             ctx.lineWidth = '3';
             ctx.strokeStyle = 'blue';
