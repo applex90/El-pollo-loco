@@ -136,6 +136,7 @@ class MovableObject extends DrawableObject {
                 this.currentImage++;
             } else {
                 clearInterval(crashInterval);
+                this.y = -100; //Hide bottle
             }
         }, 120);
     }

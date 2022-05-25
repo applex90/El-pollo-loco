@@ -20,6 +20,7 @@ class ThrowableObject extends MovableObject {
         this.throw();
     }
 
+
     throw() {
         this.speedY = 22;
         this.applyGravity();
@@ -30,7 +31,8 @@ class ThrowableObject extends MovableObject {
   
     isOnGround() {
         let fallInterval = setInterval(() => {
-            if (this.y > 370) {
+            if (this.y > 400) {
+                world.hit = false;
                 this.playAnimationBottleCrash(this.IMAGES_CRASHED_BOTTLES);
                 clearInterval(fallInterval);
                 clearInterval(this.gravityInterval);

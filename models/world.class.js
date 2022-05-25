@@ -18,7 +18,8 @@ class World {
     enemyHeightStep = 5;
     canyon_sound = new Audio('audio/canyon.mp3');
     gameover_sound = new Audio('audio/gameover.mp3');
-
+    hitEndbossCounter = 0;
+    hit = false;
 
 
     constructor(canvas, keyboard) {
@@ -141,6 +142,17 @@ class World {
                     if (this.level.enemies[hittedEnemy] instanceof Chicken) {
                         this.sendEnemyToHeaven(hittedEnemy);
                     }
+
+                    if (this.level.enemies[hittedEnemy] instanceof Endboss && !this.hit) {
+                        this.hit = true;
+                        this.hitEndbossCounter++;
+                        this.level.enemies[hittedEnemy].hurtAnimation();
+                        
+                        if (this.hitEndbossCounter == 3) {
+                            this.level.enemies[hittedEnemy].deadAnimation();
+                        }
+                    }
+
                 }
             })
         })
@@ -190,10 +202,10 @@ class World {
         this.addToMap(this.botellaBar);
         this.ctx.translate(this.camera_x, 0); //Forwards
 
-        this.addObjectsToMap(this.level.enemies);
-        this.addObjectsToMap(this.throwableObjects);
         this.addObjectsToMap(this.level.bottles);
+        this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.coins);
+        this.addObjectsToMap(this.throwableObjects);
         this.addToMap(this.character);
 
         this.ctx.translate(-this.camera_x, 0);
