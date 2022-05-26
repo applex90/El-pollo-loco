@@ -1,5 +1,4 @@
 class BarEnergy extends StatusBar {
-
     IMAGES_ENERGY = [
         'img/7.Marcadores/Barra/Marcador vida/azul/0_.png',
         'img/7.Marcadores/Barra/Marcador vida/azul/20_.png',
@@ -8,6 +7,7 @@ class BarEnergy extends StatusBar {
         'img/7.Marcadores/Barra/Marcador vida/azul/80_.png',
         'img/7.Marcadores/Barra/Marcador vida/azul/100_.png'
     ];
+
 
     constructor() {
         super(); // Methoden von übergeordnetem Objekt initialisieren
@@ -19,11 +19,11 @@ class BarEnergy extends StatusBar {
         this.setPercentage(100);
     }
 
+
     //setPercentage(50);
     setPercentage(percentage) {
         this.percentage = percentage; // => 0 ... 5
         let path = this.IMAGES_ENERGY[this.resolveImageIndex()];
         this.img = this.imageCache[path];
     }
-
 }

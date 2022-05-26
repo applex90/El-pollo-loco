@@ -1,5 +1,4 @@
 class BarBarra extends StatusBar {
-
     IMAGES_BARRA = [
         'img/7.Marcadores/Barra/Marcador moneda/azul/0_.png',
         'img/7.Marcadores/Barra/Marcador moneda/azul/20_.png',
@@ -20,11 +19,11 @@ class BarBarra extends StatusBar {
         this.setPercentage(0);
     }
 
+
     //setPercentage(50);
     setPercentage(percentage) {
         this.percentage = percentage; // => 0 ... 5
         let path = this.IMAGES_BARRA[this.resolveImageIndex()];
         this.img = this.imageCache[path];
     }
-
 }

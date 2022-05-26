@@ -4,7 +4,7 @@ class Bottle extends CollectableObject {
         'img/6.botella/2.Botella_enterrada1.png',
         'img/6.botella/2.Botella_enterrada2.png'
     ];
-   
+
 
     constructor() {
         super().loadImage('img/6.botella/2.Botella_enterrada1.png');
@@ -13,10 +13,10 @@ class Bottle extends CollectableObject {
         this.animate();
     }
 
+
     animate() {
         setInterval(() => {
             this.playAnimation(this.IMAGES_COLLECTABLE_BOTTLES);
         }, 500)
     }
-
 }

@@ -5,7 +5,6 @@ class Endboss extends MovableObject {
     hadFirstContact = false;
     hurtIntervalRunning = false;
     deadIntervalRunning = false;
-
     IMAGES_WALK = [
         'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/1.Caminata/G1.png',
         'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/1.Caminata/G2.png',
@@ -42,19 +41,20 @@ class Endboss extends MovableObject {
         'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/4.Muerte/G26.png'
     ];
 
+
     constructor() {
         super().loadImage(this.IMAGES_WALK[0]);
         this.loadImages(this.IMAGES_WALK);
         this.loadImages(this.IMAGES_ALERTNESS_ATTACK);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
-        this.x = 2200;
+        this.x = 2100;
         this.speed = 8.5;
         this.animate();
     }
 
-    animate() {
 
+    animate() {
         setInterval(() => {
             let distance_to_character = this.x - world.character.x;
 
@@ -66,17 +66,23 @@ class Endboss extends MovableObject {
                 this.hadFirstContact = true;
             }
 
-            if (this.hadFirstContact && distance_to_character < 500 && distance_to_character > 250 && !this.hurtIntervalRunning && !this.deadIntervalRunning) {
-                this.playAnimation(this.IMAGES_WALK);
-                this.moveLeft();
-            }
-
-            if (this.hadFirstContact && distance_to_character < 250 && !this.hurtIntervalRunning && !this.deadIntervalRunning) {
+            if (this.hadFirstContact && Math.abs(distance_to_character) < 600 && Math.abs(distance_to_character) > 300 && !this.hurtIntervalRunning && !this.deadIntervalRunning) {
                 this.playAnimation(this.IMAGES_ALERTNESS_ATTACK);
             }
 
+            if (this.hadFirstContact && Math.abs(distance_to_character) < 300 && !this.hurtIntervalRunning && !this.deadIntervalRunning) {
+                this.playAnimation(this.IMAGES_WALK);
+                if (distance_to_character > 0 && distance_to_character < 300) {
+                    this.otherDirection = false;
+                    this.moveLeft();
+                } else if (distance_to_character < 0 && distance_to_character > -300) {
+                    this.otherDirection = true;
+                    this.moveRight();
+                }
+            }
         }, 200);
     }
+
 
     hurtAnimation() {
         let i = 0;
@@ -111,5 +117,4 @@ class Endboss extends MovableObject {
             }
         }, 500);
     }
-
 }

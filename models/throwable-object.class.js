@@ -1,5 +1,4 @@
 class ThrowableObject extends MovableObject {
-
     IMAGES_CRASHED_BOTTLES = [
         'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 7.png',
         'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 8.png',
@@ -10,6 +9,7 @@ class ThrowableObject extends MovableObject {
     ];
     throwDirectionInterval = 1;
 
+    
     constructor(x, y) {
         super().loadImage('img/7.Marcadores/Icono/Botella.png');
         this.loadImages(this.IMAGES_CRASHED_BOTTLES);

@@ -1,5 +1,4 @@
 class BarBotella extends StatusBar {
-
     IMAGES_BOTELLA = [
         'img/7.Marcadores/Barra/Marcador_botella/Azul/0_.png',
         'img/7.Marcadores/Barra/Marcador_botella/Azul/20_.png',
@@ -27,5 +26,4 @@ class BarBotella extends StatusBar {
         let path = this.IMAGES_BOTELLA[this.resolveImageIndex()];
         this.img = this.imageCache[path];
     }
-
 }

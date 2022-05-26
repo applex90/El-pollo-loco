@@ -1,5 +1,4 @@
 class World {
-
     character = new Character();
     level = level1;
     enemies = level1.enemies; //to get access in world
@@ -78,6 +77,7 @@ class World {
 
     checkDeath() {
         if (this.character.energy == 0) {
+            console.info('you lose');
             this.showGameOverScreen();
         }
     }
@@ -85,7 +85,6 @@ class World {
 
     showGameOverScreen() {
         this.stopActions();
-        console.info('Gameover');
         document.getElementById('game-over-screen').classList.remove('hide');
         document.getElementById('start-btn').textContent = "NEW GAME";
         document.getElementById('start-btn').style.display = 'block';
@@ -203,8 +202,8 @@ class World {
         this.ctx.translate(this.camera_x, 0); //Forwards
 
         this.addObjectsToMap(this.level.bottles);
-        this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.coins);
+        this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.throwableObjects);
         this.addToMap(this.character);
 
@@ -232,7 +231,7 @@ class World {
         }
 
         mo.draw(this.ctx);
-        mo.drawFrame(this.ctx);
+        //mo.drawFrame(this.ctx); //draw a frame around the object
 
         if (mo.otherDirection) {
             this.flipImageBack(mo);
@@ -252,5 +251,4 @@ class World {
         mo.x = mo.x * -1;
         this.ctx.restore();
     }
-
 }

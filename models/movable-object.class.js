@@ -84,7 +84,7 @@ class MovableObject extends DrawableObject {
         return timepassedThrown > 1; // returned true or false if timepassed > 1 s
     }
 
-
+    
     applyGravity() {
         this.gravityInterval = setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {

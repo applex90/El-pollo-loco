@@ -3,6 +3,7 @@ let world;
 let keyboard = new Keyboard();
 let up_element, space_element, left_element, right_element;
 
+
 window.addEventListener("resize", function () {
     checkOrientation();
 });
@@ -57,6 +58,7 @@ function defineEvents() {
     defineLEFT();
     defineRIGHT();
 }
+
 
 function jumpUpStart(evt) {
     evt.preventDefault()
@@ -152,9 +154,7 @@ function showFullscreen() {
 }
 
 
-
 function exitFullscreen() {
-
     if (document.exitFullscreen) {
         document.exitFullscreen();
     } else if (document.webkitRequestFullscreen) { /* Safari */
@@ -163,7 +163,6 @@ function exitFullscreen() {
         document.msExitFullscreen();
     }
 }
-
 
 
 function startGame() {
