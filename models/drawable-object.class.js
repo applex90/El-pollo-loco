@@ -11,7 +11,7 @@ class DrawableObject {
         left: 30,
         right: 40,
         bottom: 30
-     };
+    };
 
 
     draw(ctx) {

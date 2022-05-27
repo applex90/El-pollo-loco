@@ -57,30 +57,38 @@ class Endboss extends MovableObject {
     animate() {
         setInterval(() => {
             let distance_to_character = this.x - world.character.x;
-
-            // console.log("Endboss", this.x);
-            // console.log("Character", world.character.x);
-            // console.log("distance", distance_to_character);
-
-            if (world.character.x > 1700 && !this.hadFirstContact) {
-                this.hadFirstContact = true;
-            }
-
-            if (this.hadFirstContact && Math.abs(distance_to_character) < 600 && Math.abs(distance_to_character) > 300 && !this.hurtIntervalRunning && !this.deadIntervalRunning) {
-                this.playAnimation(this.IMAGES_ALERTNESS_ATTACK);
-            }
-
-            if (this.hadFirstContact && Math.abs(distance_to_character) < 300 && !this.hurtIntervalRunning && !this.deadIntervalRunning) {
-                this.playAnimation(this.IMAGES_WALK);
-                if (distance_to_character > 0 && distance_to_character < 300) {
-                    this.otherDirection = false;
-                    this.moveLeft();
-                } else if (distance_to_character < 0 && distance_to_character > -300) {
-                    this.otherDirection = true;
-                    this.moveRight();
-                }
-            }
+            this.checkIfCharacterIsNearEnough();
+            this.checkIfEndbossCanAttack(distance_to_character);
+            this.checkIfEndbossCanMove(distance_to_character);
         }, 200);
+    }
+
+
+    checkIfCharacterIsNearEnough(){
+        if (world.character.x > 1700 && !this.hadFirstContact) {
+            this.hadFirstContact = true;
+        }
+    }
+
+
+    checkIfEndbossCanAttack(distance_to_character){
+        if (this.hadFirstContact && Math.abs(distance_to_character) < 600 && Math.abs(distance_to_character) > 300 && !this.hurtIntervalRunning && !this.deadIntervalRunning) {
+            this.playAnimation(this.IMAGES_ALERTNESS_ATTACK);
+        }
+    }
+
+
+    checkIfEndbossCanMove(distance_to_character){
+        if (this.hadFirstContact && Math.abs(distance_to_character) < 300 && !this.hurtIntervalRunning && !this.deadIntervalRunning) {
+            this.playAnimation(this.IMAGES_WALK);
+            if (distance_to_character > 0 && distance_to_character < 300) {
+                this.otherDirection = false;
+                this.moveLeft();
+            } else if (distance_to_character < 0 && distance_to_character > -300) {
+                this.otherDirection = true;
+                this.moveRight();
+            }
+        }
     }
 
 

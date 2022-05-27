@@ -122,7 +122,7 @@ class World {
                 let bottle = this.createDirectionForBottle();
                 if (this.character.isThrown()) {
                     this.character.lastThrow = new Date().getTime();
-                    this.throwableObjects.push(bottle);
+                    this.updateThrowableObjects(bottle);
                     this.character.bottles -= 1;
                     this.botellaBar.setPercentage(this.character.bottles);
                 }
@@ -131,30 +131,49 @@ class World {
     }
 
 
+    updateThrowableObjects(bottle){
+        this.throwableObjects.pop(); //removes the last element
+        this.throwableObjects.unshift(bottle); //adds a new element to an array (at the beginning), and "unshifts" older elements
+    }
+
+
     checkThrowObjectsColissionWithEnemy() {
         this.level.enemies.forEach(enemy => {
             this.throwableObjects.forEach(object => {
-                if (object.isColliding(enemy)) {
-                    //console.log('index of bottle', this.throwableObjects.indexOf(object));
-                    //console.log('index of enemy', this.level.enemies.indexOf(enemy));
-                    let hittedEnemy = this.level.enemies.indexOf(enemy);
-                    if (this.level.enemies[hittedEnemy] instanceof Chicken) {
-                        this.sendEnemyToHeaven(hittedEnemy);
-                    }
-
-                    if (this.level.enemies[hittedEnemy] instanceof Endboss && !this.hit) {
-                        this.hit = true;
-                        this.hitEndbossCounter++;
-                        this.level.enemies[hittedEnemy].hurtAnimation();
-                        
-                        if (this.hitEndbossCounter == 3) {
-                            this.level.enemies[hittedEnemy].deadAnimation();
-                        }
-                    }
-
-                }
+                this.checkIfCollission(object, enemy); 
             })
         })
+    }
+
+
+    checkIfCollission(object, enemy){
+        if (object.isColliding(enemy)) {
+            //console.log('index of bottle', this.throwableObjects.indexOf(object));
+            //console.log('index of enemy', this.level.enemies.indexOf(enemy));
+            let hittedEnemy = this.level.enemies.indexOf(enemy);
+            this.checkIfChickenHitted(hittedEnemy);
+            this.checkIfEndbossHitted(hittedEnemy);
+        }
+    }
+
+
+    checkIfChickenHitted(hittedEnemy) {
+        if (this.level.enemies[hittedEnemy] instanceof Chicken) {
+            this.sendEnemyToHeaven(hittedEnemy);
+        }
+    }
+
+
+    checkIfEndbossHitted(hittedEnemy){
+        if (this.level.enemies[hittedEnemy] instanceof Endboss && !this.hit) {
+            this.hit = true;
+            this.hitEndbossCounter++;
+            console.info('Endboss hitted', this.hitEndbossCounter);
+            this.level.enemies[hittedEnemy].hurtAnimation();
+            if (this.hitEndbossCounter == 3) {
+                this.level.enemies[hittedEnemy].deadAnimation();
+            }
+        }
     }
 
 
@@ -163,11 +182,18 @@ class World {
             let stepUp = this.enemyHeightStep += 10;
             let currentHeight = this.level.enemies[hittedEnemy].y;
             this.level.enemies[hittedEnemy].y = currentHeight - stepUp;
-            if (this.inHeaven(hittedEnemy)) {
-                clearInterval(upInterval);
-                this.enemyHeightStep = 0;
-            }
+            this.checkIfEnemyIsInHeaven(hittedEnemy, upInterval);
         }, 60);
+    }
+
+
+    checkIfEnemyIsInHeaven(hittedEnemy, upInterval){
+        if (this.inHeaven(hittedEnemy)) {
+            clearInterval(this.level.enemies[hittedEnemy].chickenMoveLeftInterval);
+            clearInterval(this.level.enemies[hittedEnemy].chickenWalkingInterval);
+            clearInterval(upInterval);
+            this.enemyHeightStep = 0;
+        }
     }
 
 
@@ -187,12 +213,9 @@ class World {
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); //Clear at first then draw again...
-
         this.ctx.translate(this.camera_x, 0);
-
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.clouds);
-
 
         // ----- Space for fixed objects
         this.ctx.translate(-this.camera_x, 0); //Back
@@ -208,7 +231,6 @@ class World {
         this.addToMap(this.character);
 
         this.ctx.translate(-this.camera_x, 0);
-
 
         // Draw() wird immer wieder aufgerufen
         let self = this;

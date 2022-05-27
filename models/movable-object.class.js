@@ -128,6 +128,7 @@ class MovableObject extends DrawableObject {
 
 
     playAnimationBottleCrash(images) {
+        this.currentImage = 0;
         let crashInterval = setInterval(() => {
             if (this.currentImage < images.length) {
                 let i = this.currentImage % images.length;
@@ -136,6 +137,7 @@ class MovableObject extends DrawableObject {
                 this.currentImage++;
             } else {
                 clearInterval(crashInterval);
+                world.hit = false;
                 this.y = -100; //Hide bottle
             }
         }, 120);
