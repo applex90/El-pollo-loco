@@ -146,14 +146,14 @@ canvas {
     background-color: black;
     background-image: url('img/9.Intro _ Outro Image/Start Screen/Opción 1.png');
     background-size: cover;
-    background-position: right top;
+    background-position: center;
     border-radius: 20px 20px 0px 0px;
     display: block;
     pointer-events: none;
     z-index: 1;
 }
 
-#game-over-screen{
+#game-over-screen {
     position: absolute;
     background-size: cover;
     background-position: top;
@@ -194,15 +194,12 @@ canvas {
 /* Smartphone landscape*/
 @media only screen and (max-height: 480px) {
     body {
-        justify-content:unset;
+        justify-content: unset;
         overflow-y: hidden;
-        height: 100%;
     }
 
-
     canvas {
-        height: 100vh;
-        border-radius: 20px;
+        border-radius: 0;
     }
 
     .mobile-control-bar {
