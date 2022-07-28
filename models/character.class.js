@@ -3,6 +3,18 @@ class Character extends MovableObject {
     width = 170;
     y = 155;
     speed = 5;
+    IMAGES_IDLE = [
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/IDLE/I-1.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/IDLE/I-2.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/IDLE/I-3.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/IDLE/I-4.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/IDLE/I-5.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/IDLE/I-6.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/IDLE/I-7.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/IDLE/I-8.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/IDLE/I-9.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/IDLE/I-10.png'
+    ];
     IMAGES_WALKING = [
         'img/2.Secuencias_Personaje-Pepe-corrección/2.Secuencia_caminata/W-21.png',
         'img/2.Secuencias_Personaje-Pepe-corrección/2.Secuencia_caminata/W-22.png',
@@ -42,6 +54,7 @@ class Character extends MovableObject {
 
     constructor() {
         super().loadImage('img/2.Secuencias_Personaje-Pepe-corrección/2.Secuencia_caminata/W-21.png');
+        this.loadImages(this.IMAGES_IDLE);
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_JUMPING);
         this.loadImages(this.IMAGES_DEAD);
@@ -80,6 +93,9 @@ class Character extends MovableObject {
                 this.playAnimation(this.IMAGES_JUMPING);
             } else {
 
+                //Idle animation
+                this.playAnimation(this.IMAGES_IDLE);
+
                 if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                     //Walk animation
                     this.playAnimation(this.IMAGES_WALKING);
@@ -99,8 +115,8 @@ class Character extends MovableObject {
 
     playJumpingSound() {
         let playJump = this.jumping_sound.play();
-         this.jumping_sound.loop = false;
-         this.jumping_sound.currentTime = 0.13;
-         this.jumping_sound.play();
+        this.jumping_sound.loop = false;
+        this.jumping_sound.currentTime = 0.13;
+        this.jumping_sound.play();
     }
 }
