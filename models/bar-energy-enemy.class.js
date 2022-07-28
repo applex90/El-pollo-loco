@@ -1,4 +1,4 @@
-class BarEnergy extends StatusBar {
+class BarEnergyEnemy extends StatusBar {
     IMAGES_ENERGY = [
         'img/7.Marcadores/Barra/Marcador vida/azul/0_.png',
         'img/7.Marcadores/Barra/Marcador vida/azul/20_.png',
@@ -12,7 +12,7 @@ class BarEnergy extends StatusBar {
     constructor() {
         super(); // Methoden von übergeordnetem Objekt initialisieren
         this.loadImages(this.IMAGES_ENERGY);
-        this.x = 40;
+        this.x = 550;
         this.y = 0;
         this.width = 180;
         this.height = 50;

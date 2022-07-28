@@ -11,13 +11,14 @@ class World {
     keyboard;
     camera_x = 0;
     energyBar = new BarEnergy();
+    energyEnemyBar = new BarEnergyEnemy();
     barraBar = new BarBarra();
     botellaBar = new BarBotella();
     throwableObjects = [];
     enemyHeightStep = 5;
     canyon_sound = new Audio('audio/canyon.mp3');
     gameover_sound = new Audio('audio/gameover.mp3');
-    hitEndbossCounter = 0;
+    hitEndbossCounter = 100;
     hit = false;
 
 
@@ -167,10 +168,11 @@ class World {
     checkIfEndbossHitted(hittedEnemy){
         if (this.level.enemies[hittedEnemy] instanceof Endboss && !this.hit) {
             this.hit = true;
-            this.hitEndbossCounter++;
+            this.hitEndbossCounter = this.hitEndbossCounter-20;
+            this.energyEnemyBar.setPercentage(this.hitEndbossCounter);
             console.info('Endboss hitted', this.hitEndbossCounter);
             this.level.enemies[hittedEnemy].hurtAnimation();
-            if (this.hitEndbossCounter == 3) {
+            if (this.hitEndbossCounter < 20) {
                 this.level.enemies[hittedEnemy].deadAnimation();
             }
         }
@@ -220,6 +222,7 @@ class World {
         // ----- Space for fixed objects
         this.ctx.translate(-this.camera_x, 0); //Back
         this.addToMap(this.energyBar);
+        this.addToMap(this.energyEnemyBar);
         this.addToMap(this.barraBar);
         this.addToMap(this.botellaBar);
         this.ctx.translate(this.camera_x, 0); //Forwards

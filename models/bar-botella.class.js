@@ -12,10 +12,10 @@ class BarBotella extends StatusBar {
     constructor() {
         super(); // Methoden von übergeordnetem Objekt initialisieren
         this.loadImages(this.IMAGES_BOTELLA);
-        this.x = 260;
-        this.y = 0;
-        this.width = 200;
-        this.height = 60;
+        this.x = 40;
+        this.y = 80;
+        this.width = 180;
+        this.height = 50;
         this.setPercentage(0);
     }
 
