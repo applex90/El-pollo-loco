@@ -12,7 +12,7 @@ class BarEnergyEnemy extends StatusBar {
     constructor() {
         super(); // Methoden von übergeordnetem Objekt initialisieren
         this.loadImages(this.IMAGES_ENERGY);
-        this.x = 550;
+        this.x = 500;
         this.y = 0;
         this.width = 180;
         this.height = 50;
