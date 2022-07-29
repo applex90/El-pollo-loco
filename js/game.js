@@ -2,7 +2,6 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 let up_element, space_element, left_element, right_element;
-let ratio = 1;
 
 window.addEventListener("resize", function () {
     checkOrientation();
@@ -23,8 +22,8 @@ function checkOrientation() {
         if (window.innerHeight < 480) {
             newWidth = window.innerWidth;
             newHeight = window.innerHeight;
-            canvas.width = newWidth * ratio;
-            canvas.height = newHeight * ratio;  
+            canvas.width = newWidth * 1.5; 
+            document.getElementById('canvas').style.height = `${newHeight}px`;
         }
     }
     else {
